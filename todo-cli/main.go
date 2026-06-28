@@ -23,6 +23,9 @@ func main() {
 		}
 
 		manager.Add(args[2])
+		if err := manager.Save(); err != nil {
+			fmt.Println("Error saving todos:", err)
+		}
 	case "list":
 		manager.List()
 	default:

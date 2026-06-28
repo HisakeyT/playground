@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 )
 
@@ -14,6 +15,16 @@ func (tm *TodoManager) Add(title string) {
 		Title: title,
 	}
 	tm.todos = append(tm.todos, todo)
+}
+
+func (tm *TodoManager) Save() error {
+	data, err := json.Marshal(tm.todos)
+	if err != nil {
+		return err
+	}
+
+	fmt.Println(string(data))
+	return nil
 }
 
 func (tm TodoManager) List() {

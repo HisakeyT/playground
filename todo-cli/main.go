@@ -6,28 +6,39 @@ import (
 )
 
 func main() {
-	todo1 := Todo{
+	// todo1 := Todo{
+	// 	ID:    1,
+	// 	Title: "Buy groceries",
+	// 	Done:  false,
+	// }
+	// todo2 := Todo{
+	// 	ID:    2,
+	// 	Title: "Learn Go",
+	// 	Done:  false,
+	// }
+	// todo3 := Todo{
+	// 	ID:    3,
+	// 	Title: "Read a book",
+	// 	Done:  true,
+	// }
+	//
+	// todos := []Todo{}
+	// todos = append(todos, todo1, todo2, todo3)
+
+	todo := Todo{
 		ID:    1,
 		Title: "Buy groceries",
 		Done:  false,
 	}
-	todo2 := Todo{
-		ID:    2,
-		Title: "Learn Go",
-		Done:  false,
-	}
-	todo3 := Todo{
-		ID:    3,
-		Title: "Read a book",
-		Done:  true,
-	}
 
-	todos := []Todo{}
-	todos = append(todos, todo1, todo2, todo3)
+	todo.MarkDone()
 
-	for _, todo := range todos {
-		fmt.Printf("ID: %d, Title: %s, Done: %t\n", todo.ID, todo.Title, todo.Done)
-	}
+	fmt.Println(todo.Display())
+
+	// for _, todo := range todos {
+	// 	fmt.Println(todo.Display())
+	// }
+
 	//		args := os.Args
 	//		if len(args) < 2 {
 	//			printUsage()
@@ -54,4 +65,12 @@ func main() {
 	//		fmt.Println("Usage:")
 	//		fmt.Println("  go run . list")
 	//		fmt.Println("  go run . add <title>")
+}
+
+func (t Todo) Display() string {
+	return fmt.Sprintf("ID: %d, Title: %s, Done: %t", t.ID, t.Title, t.Done)
+}
+
+func (t *Todo) MarkDone() {
+	t.Done = true
 }

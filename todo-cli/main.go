@@ -14,6 +14,10 @@ func main() {
 	}
 
 	manager := TodoManager{}
+	if err := manager.Load(); err != nil {
+		fmt.Println("Error loading todos:", err)
+		return
+	}
 
 	switch args[1] {
 	case "add":

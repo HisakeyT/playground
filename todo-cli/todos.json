@@ -1,1 +1,12 @@
-[{"ID":1,"Title":"Buy groceries","Done":false}]
+[
+  {
+    "ID": 1,
+    "Title": "Buy groceries",
+    "Done": false
+  },
+  {
+    "ID": 2,
+    "Title": "Learn Go",
+    "Done": false
+  }
+]

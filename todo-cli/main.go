@@ -1,76 +1,11 @@
 package main
 
-import (
-	"fmt"
-	// "os"
-)
-
 func main() {
-	// todo1 := Todo{
-	// 	ID:    1,
-	// 	Title: "Buy groceries",
-	// 	Done:  false,
-	// }
-	// todo2 := Todo{
-	// 	ID:    2,
-	// 	Title: "Learn Go",
-	// 	Done:  false,
-	// }
-	// todo3 := Todo{
-	// 	ID:    3,
-	// 	Title: "Read a book",
-	// 	Done:  true,
-	// }
-	//
-	// todos := []Todo{}
-	// todos = append(todos, todo1, todo2, todo3)
+	manager := TodoManager{}
 
-	todo := Todo{
-		ID:    1,
-		Title: "Buy groceries",
-		Done:  false,
-	}
+	manager.Add("Buy groceries")
+	manager.Add("Learn Go")
+	manager.Add("Read a book")
 
-	todo.MarkDone()
-
-	fmt.Println(todo.Display())
-
-	// for _, todo := range todos {
-	// 	fmt.Println(todo.Display())
-	// }
-
-	//		args := os.Args
-	//		if len(args) < 2 {
-	//			printUsage()
-	//			return
-	//		}
-	//
-	//		switch args[1] {
-	//		case "list":
-	//			fmt.Println("Listing todos...")
-	//		case "add":
-	//			if len(args) < 3 {
-	//				fmt.Println("titleがありません")
-	//				return
-	//			}
-	//			title := args[2]
-	//			fmt.Printf("Adding todo: %s\n", title)
-	//		default:
-	//			fmt.Printf("Unknown command: %s\n\n", args[1])
-	//			printUsage()
-	//		}
-	//	}
-	//
-	//	func printUsage() {
-	//		fmt.Println("Usage:")
-	//		fmt.Println("  go run . list")
-	//		fmt.Println("  go run . add <title>")
-}
-
-func (t Todo) Display() string {
-	return fmt.Sprintf("ID: %d, Title: %s, Done: %t", t.ID, t.Title, t.Done)
-}
-
-func (t *Todo) MarkDone() {
-	t.Done = true
+	manager.List()
 }

@@ -6,13 +6,28 @@ import (
 )
 
 func main() {
-	todo := Todo{
+	todo1 := Todo{
 		ID:    1,
 		Title: "Buy groceries",
 		Done:  false,
 	}
+	todo2 := Todo{
+		ID:    2,
+		Title: "Learn Go",
+		Done:  false,
+	}
+	todo3 := Todo{
+		ID:    3,
+		Title: "Read a book",
+		Done:  true,
+	}
 
-	fmt.Println(todo)
+	todos := []Todo{}
+	todos = append(todos, todo1, todo2, todo3)
+
+	for _, todo := range todos {
+		fmt.Printf("ID: %d, Title: %s, Done: %t\n", todo.ID, todo.Title, todo.Done)
+	}
 	//		args := os.Args
 	//		if len(args) < 2 {
 	//			printUsage()

@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"os"
 )
 
 type TodoManager struct {
@@ -23,7 +24,10 @@ func (tm *TodoManager) Save() error {
 		return err
 	}
 
-	fmt.Println(string(data))
+	if err := os.WriteFile("todos.json", data, 0644); err != nil {
+		return err
+	}
+
 	return nil
 }
 

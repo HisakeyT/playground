@@ -14,7 +14,7 @@ type TodoManager struct {
 
 func (tm *TodoManager) Add(title string) {
 	todo := Todo{
-		ID:    len(tm.todos) + 1,
+		ID:    tm.nextID(),
 		Title: title,
 	}
 	tm.todos = append(tm.todos, todo)
@@ -65,7 +65,6 @@ func (tm *TodoManager) MarkDone(id int) error {
 
 	todo.Done = true
 	// Save the updated todos to the file
-
 	return tm.Save()
 }
 
@@ -80,4 +79,14 @@ func (tm *TodoManager) findByID(id int) (*Todo, error) {
 		}
 	}
 	return nil, fmt.Errorf("Todo with ID %d not found", id)
+}
+
+func (tm *TodoManager) nextID() int {
+	maxID := 0
+	for _, todo := range tm.todos {
+		if todo.ID > maxID {
+			maxID = todo.ID
+		}
+	}
+	return maxID + 1
 }

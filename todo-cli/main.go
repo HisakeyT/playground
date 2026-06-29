@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strconv"
 )
 
 func main() {
@@ -32,6 +33,21 @@ func main() {
 		}
 	case "list":
 		manager.List()
+	case "done":
+		if len(args) < 3 {
+			fmt.Println("Error: Missing ID for the todo to mark as done")
+			return
+		}
+
+		id, err := strconv.Atoi(args[2])
+		if err != nil {
+			fmt.Println("Error: ID must be a number")
+			return
+		}
+
+		if err := manager.MarkDone(id); err != nil {
+			fmt.Println("Error marking todo as done:", err)
+		}
 	default:
 		pringUsage()
 		return
@@ -42,4 +58,5 @@ func pringUsage() {
 	fmt.Println("Usage:")
 	fmt.Println("  add <title>   - Add a new todo")
 	fmt.Println("  list          - List all todos")
+	fmt.Println("  done <id>     - Mark a todo as done")
 }

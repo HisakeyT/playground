@@ -57,6 +57,27 @@ func (tm *TodoManager) Load() error {
 	return nil
 }
 
+func (tm *TodoManager) MarkDone(id int) error {
+	todo, err := tm.findByID(id)
+	if err != nil {
+		return err
+	}
+
+	todo.Done = true
+	// Save the updated todos to the file
+
+	return tm.Save()
+}
+
 func (t Todo) display() string {
 	return fmt.Sprintf("ID: %d, Title: %s, Done: %t", t.ID, t.Title, t.Done)
+}
+
+func (tm *TodoManager) findByID(id int) (*Todo, error) {
+	for i, todo := range tm.todos {
+		if todo.ID == id {
+			return &tm.todos[i], nil
+		}
+	}
+	return nil, fmt.Errorf("Todo with ID %d not found", id)
 }

@@ -63,6 +63,10 @@ func main() {
 		if err := manager.Delete(id); err != nil {
 			fmt.Println("Error deleting todo:", err)
 		}
+
+		if err := manager.Save(); err != nil {
+			fmt.Println("Error saving todos:", err)
+		}
 	default:
 		pringUsage()
 		return

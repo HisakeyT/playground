@@ -48,6 +48,9 @@ func main() {
 		if err := manager.MarkDone(id); err != nil {
 			fmt.Println("Error marking todo as done:", err)
 		}
+		if err := manager.Save(); err != nil {
+			fmt.Println("Error saving todos:", err)
+		}
 	case "delete":
 		if len(args) < 3 {
 			fmt.Println("Error: Missing ID for the todo to delete")

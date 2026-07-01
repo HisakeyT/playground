@@ -64,15 +64,14 @@ func (tm *TodoManager) MarkDone(id int) error {
 	}
 
 	todo.Done = true
-	// Save the updated todos to the file
-	return tm.Save()
+	return nil
 }
 
 func (tm *TodoManager) Delete(id int) error {
 	for i, todo := range tm.todos {
 		if todo.ID == id {
 			tm.todos = append(tm.todos[:i], tm.todos[i+1:]...)
-			return tm.Save() // Save the updated todos to the file
+			return nil
 		}
 	}
 	return fmt.Errorf("Todo with ID %d not found", id)

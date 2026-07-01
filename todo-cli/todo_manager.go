@@ -68,6 +68,16 @@ func (tm *TodoManager) MarkDone(id int) error {
 	return tm.Save()
 }
 
+func (tm *TodoManager) Delete(id int) error {
+	for i, todo := range tm.todos {
+		if todo.ID == id {
+			tm.todos = append(tm.todos[:i], tm.todos[i+1:]...)
+			return tm.Save() // Save the updated todos to the file
+		}
+	}
+	return fmt.Errorf("Todo with ID %d not found", id)
+}
+
 func (t Todo) display() string {
 	return fmt.Sprintf("ID: %d, Title: %s, Done: %t", t.ID, t.Title, t.Done)
 }

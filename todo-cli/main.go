@@ -48,6 +48,21 @@ func main() {
 		if err := manager.MarkDone(id); err != nil {
 			fmt.Println("Error marking todo as done:", err)
 		}
+	case "delete":
+		if len(args) < 3 {
+			fmt.Println("Error: Missing ID for the todo to delete")
+			return
+		}
+
+		id, err := strconv.Atoi(args[2])
+		if err != nil {
+			fmt.Println("Error: ID must be a number")
+			return
+		}
+
+		if err := manager.Delete(id); err != nil {
+			fmt.Println("Error deleting todo:", err)
+		}
 	default:
 		pringUsage()
 		return
@@ -59,4 +74,5 @@ func pringUsage() {
 	fmt.Println("  add <title>   - Add a new todo")
 	fmt.Println("  list          - List all todos")
 	fmt.Println("  done <id>     - Mark a todo as done")
+	fmt.Println("  delete <id>   - Delete a todo")
 }
